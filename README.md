@@ -80,3 +80,13 @@ Ex: VALE3 tem 8 mil disponivel, digitar 2 mil no valor a resgatar
 - Clicar em confirmar
 
 - **Resultado esperado:** Deve aparecer um modal com a mensagem que o resgate foi efetuado com sucesso, e quando clinar em novo resgate, voltar pra tela inicial.
+
+## Instalação
+
+#### Clone o repositório
+	$ git clone https://github.com/kaykerocha/coopersystem_test.git
+#### Instale as dependências do projeto
+	$ yarn install
+#### Execute o projeto
+	$ yarn react-native run-android
+
