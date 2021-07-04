@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-import api from '../../services/api';
+import InvestmentsServices from '../../services/InvestmentsServices';
 
 import Header from '../../components/Header';
 import List from '../../components/List';
@@ -10,7 +10,7 @@ import TouchableCard from '../../components/TouchableCard';
 import {formatMoney} from '../../utils/utils.js';
 
 const Investiment = ({props, navigation}) => {
-  const [actions, setActions] = useState([]);
+  const [investments, setInvestments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [messageFetch, setMessageFetch] = useState(
     'Carregando investimentos...',
@@ -18,14 +18,15 @@ const Investiment = ({props, navigation}) => {
 
   const getInvestments = async () => {
     try {
-      const {status, data} = await api.get('/5e76797e2f0000f057986099');
-      if (status) {
-        setActions(data.response.data.listaInvestimentos);
+      const {status, data} = await InvestmentsServices.all();
+      if (status === 200) {
+        setInvestments(data.response.data.listaInvestimentos);
         setLoading(false);
       } else {
+        setMessageFetch('Nenhum investimento encontrado.');
       }
     } catch (error) {
-      setMessageFetch('Nenhum investimento encontrado');
+      setMessageFetch('Erro ao carregar os investimentos.');
     }
   };
 
@@ -74,7 +75,7 @@ const Investiment = ({props, navigation}) => {
         <Loading />
       ) : (
         <List header={<HeaderList />}>
-          {actions.map(investimento => {
+          {investments.map(investimento => {
             return (
               <Card key={investimento.nome}>
                 <TouchableCard
