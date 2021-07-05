@@ -30,6 +30,7 @@ const InputNumeric = styled.TextInput`
   width: 100%;
   font-size: 16px;
   padding-bottom: 0px;
+  color: #000000;
 `;
 
 export {Container, ContainerInput, ContainerText, InputLabel, InputNumeric};
